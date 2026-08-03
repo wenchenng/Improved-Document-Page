@@ -35,7 +35,7 @@ Confidential - Oversea-Chinese Banking Corporation Limited
 `;
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = window.document.createElement('a');
     a.href = url;
     a.download = `${document.title.replace(/\s+/g, '_')}_${document.monthYear.replace(/\s+/g, '_')}.txt`;
     a.click();
