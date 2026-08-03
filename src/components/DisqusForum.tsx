@@ -48,22 +48,22 @@ interface LocalComment {
 
 export const DisqusForum: React.FC<DisqusForumProps> = ({
   url = 'https://ocbc-digital.example.com/statements',
-  identifier = 'ocbc-view-statements-page-1',
-  title = 'OCBC View Statement/Letter Forum',
+  identifier = 'website-feedback-comments-page',
+  title = 'Website Feedback & Comments',
 }) => {
   const disqusShortname = 'ocbc-new-example';
   const [disqusFailed, setDisqusFailed] = useState(false);
   const [localComments, setLocalComments] = useState<LocalComment[]>([
     {
       id: 1,
-      author: 'Bank Customer',
-      text: 'Is the 2026 e-Statement already available for download?',
+      author: 'Site Visitor',
+      text: 'Great website layout! The statement portal is very clean and easy to navigate.',
       date: '2 hours ago',
     },
     {
       id: 2,
-      author: 'OCBC Support',
-      text: 'Yes! e-Statements are published on the 1st of every month. You can view or download PDF statements from the table above.',
+      author: 'UI/UX Reviewer',
+      text: 'Love the quick filtering options and the responsive modal view for document details.',
       date: '1 hour ago',
     },
   ]);
@@ -115,7 +115,7 @@ export const DisqusForum: React.FC<DisqusForumProps> = ({
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-2">
           <MessageSquare className="w-5 h-5 text-[#ED1C24]" />
-          <h3 className="font-bold text-gray-900 text-lg">Community Discussion & Feedback</h3>
+          <h3 className="font-bold text-gray-900 text-lg">Website Viewer Comments & Feedback</h3>
         </div>
         <div className="text-xs text-gray-500 font-medium bg-white px-3 py-1 rounded border border-gray-200 shadow-2xs">
           {!disqusFailed ? (
@@ -137,7 +137,7 @@ export const DisqusForum: React.FC<DisqusForumProps> = ({
               <div className="space-y-4">
                 <div className="p-3 bg-amber-50 text-amber-800 rounded border border-amber-200 text-xs flex items-center space-x-2">
                   <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-                  <span>Disqus embed is in preview fallback mode. Local discussion thread active below.</span>
+                  <span>Disqus embed is in preview fallback mode. Local website feedback thread active below.</span>
                 </div>
                 {renderLocalForum(localComments, newComment, setNewComment, handleAddComment)}
               </div>
@@ -166,7 +166,7 @@ function renderLocalForum(
           type="text"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Leave a comment or inquiry regarding statements..."
+          placeholder="Leave a comment or feedback about this website..."
           className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded focus:outline-hidden focus:ring-1 focus:ring-red-500"
         />
         <button

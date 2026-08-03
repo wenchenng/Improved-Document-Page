@@ -169,8 +169,8 @@ Confidential - Oversea-Chinese Banking Corporation Limited
           {/* BEGIN: Disqus Discussion Forum */}
           <DisqusForum
             url={typeof window !== 'undefined' ? window.location.href : 'https://ocbc-digital.example.com/statements'}
-            identifier="ocbc-view-statements-page-1"
-            title="OCBC View Statement/Letter Discussion Forum"
+            identifier="website-feedback-comments-page"
+            title="Website Viewer Comments & Feedback"
           />
           {/* END: Disqus Discussion Forum */}
         </main>
