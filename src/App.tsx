@@ -8,6 +8,7 @@ import { DocumentList } from './components/DocumentList';
 import { DocumentModal } from './components/DocumentModal';
 import { ManageDocuments } from './components/ManageDocuments';
 import { ENoticesView, TaxCertificatesView, PrimaryNavPlaceholder } from './components/SecondaryViews';
+import { DisqusForum } from './components/DisqusForum';
 
 export default function App() {
   const [primaryNav, setPrimaryNav] = useState<PrimaryNav | null>(null);
@@ -164,6 +165,14 @@ Confidential - Oversea-Chinese Banking Corporation Limited
               )}
             </>
           )}
+
+          {/* BEGIN: Disqus Discussion Forum */}
+          <DisqusForum
+            url={typeof window !== 'undefined' ? window.location.href : 'https://ocbc-digital.example.com/statements'}
+            identifier="ocbc-view-statements-page-1"
+            title="OCBC View Statement/Letter Discussion Forum"
+          />
+          {/* END: Disqus Discussion Forum */}
         </main>
         {/* END: ContentArea */}
       </div>
