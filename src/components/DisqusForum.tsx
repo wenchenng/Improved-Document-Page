@@ -51,42 +51,8 @@ export const DisqusForum: React.FC<DisqusForumProps> = () => {
     { id: 'sad', emoji: '😢', label: 'Sad', count: 0 },
   ]);
 
-  // Comments state matching the screenshot
-  const [comments, setComments] = useState<CommentItem[]>([
-    {
-      id: '1',
-      author: 'Ellen Tan',
-      avatarLetter: 'E',
-      avatarBg: 'bg-[#1c1c1c]',
-      hasUserPlus: true,
-      timeAgo: '9 minutes ago',
-      content: 'There are more assets shown under Total assets for the new one. Eg dividends, vault',
-      upvotes: 3,
-      downvotes: 0,
-    },
-    {
-      id: '2',
-      author: 'Sarah Chen',
-      avatarLetter: 'S',
-      avatarBg: 'bg-emerald-800',
-      hasUserPlus: false,
-      timeAgo: '25 minutes ago',
-      content: 'The website layout looks very clean and responsive. Great work on the interface design!',
-      upvotes: 5,
-      downvotes: 0,
-    },
-    {
-      id: '3',
-      author: 'David Lim',
-      avatarLetter: 'D',
-      avatarBg: 'bg-indigo-700',
-      hasUserPlus: false,
-      timeAgo: '1 hour ago',
-      content: 'Is there an option to export statements in CSV format as well?',
-      upvotes: 2,
-      downvotes: 0,
-    },
-  ]);
+  // Comments state starting clean (user input driven)
+  const [comments, setComments] = useState<CommentItem[]>([]);
 
   const [newCommentText, setNewCommentText] = useState('');
   const [sortBy, setSortBy] = useState<'best' | 'newest' | 'oldest'>('best');
@@ -208,7 +174,7 @@ export const DisqusForum: React.FC<DisqusForumProps> = () => {
           <div className="self-start sm:self-center">
             <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-gray-200 bg-white shadow-2xs text-xs md:text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors cursor-default">
               <MessageSquare className="w-4 h-4 text-emerald-600" />
-              <span>{comments.length + 5} Comments</span>
+              <span>{comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}</span>
             </div>
           </div>
         </div>
@@ -258,7 +224,7 @@ export const DisqusForum: React.FC<DisqusForumProps> = () => {
         {/* Comment Thread Top Bar */}
         <div className="flex items-center justify-between pt-4 pb-3">
           <div className="text-base font-bold text-gray-900">
-            {comments.length + 5} Comments
+            {comments.length} {comments.length === 1 ? 'Comment' : 'Comments'}
           </div>
 
           <div className="relative">
@@ -378,7 +344,12 @@ export const DisqusForum: React.FC<DisqusForumProps> = () => {
 
         {/* Comment List */}
         <div className="space-y-6 pt-2">
-          {sortedComments.map((comment) => (
+          {sortedComments.length === 0 ? (
+            <div className="py-8 text-center text-sm text-gray-500 font-medium bg-gray-50/50 rounded-xl border border-dashed border-gray-200">
+              No comments yet. Be the first to join the discussion!
+            </div>
+          ) : (
+            sortedComments.map((comment) => (
             <div key={comment.id} className="group">
               <div className="flex items-start space-x-3.5">
                 {/* Avatar */}
@@ -509,7 +480,8 @@ export const DisqusForum: React.FC<DisqusForumProps> = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        )}
         </div>
       </div>
     </div>
